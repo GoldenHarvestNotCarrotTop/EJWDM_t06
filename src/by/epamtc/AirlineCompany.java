@@ -1,5 +1,6 @@
 package by.epamtc;
 
+import by.epamtc.exception.NullPlaneException;
 import by.epamtc.plane.BasePlane;
 import by.epamtc.plane.PassengerPlane;
 
@@ -13,7 +14,9 @@ import java.util.function.Predicate;
 public class AirlineCompany implements Serializable {
     private List<BasePlane> planes = new ArrayList<>();
 
-    public void addPlane(BasePlane plane) {
+    public void addPlane(BasePlane plane) throws NullPlaneException {
+        if(plane == null)
+            throw new NullPlaneException("Plane must not be null");
         planes.add(plane);
     }
 

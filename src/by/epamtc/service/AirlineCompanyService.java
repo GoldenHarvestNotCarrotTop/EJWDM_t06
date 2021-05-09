@@ -1,6 +1,7 @@
 package by.epamtc.service;
 
 import by.epamtc.AirlineCompany;
+import by.epamtc.exception.NullPlaneException;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -13,10 +14,18 @@ public class AirlineCompanyService {
             int r = ThreadLocalRandom.current().nextInt(2);
             switch (r) {
                 case 0:
-                    airlineCompany.addPlane(PlaneService.generateRandomPassengerPlane());
+                    try {
+                        airlineCompany.addPlane(PlaneService.generateRandomPassengerPlane());
+                    } catch (NullPlaneException e) {
+                        continue;
+                    }
                     break;
                 case 1:
-                    airlineCompany.addPlane(PlaneService.generateRandomCargoPlane());
+                    try {
+                        airlineCompany.addPlane(PlaneService.generateRandomCargoPlane());
+                    } catch (NullPlaneException e) {
+                        continue;
+                    }
                     break;
             }
         }
