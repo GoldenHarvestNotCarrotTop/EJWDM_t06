@@ -3,12 +3,14 @@ package by.epamtc;
 import by.epamtc.plane.BasePlane;
 import by.epamtc.plane.PassengerPlane;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 
-public class AirlineCompany {
+public class AirlineCompany implements Serializable {
     private List<BasePlane> planes = new ArrayList<>();
 
     public void addPlane(BasePlane plane) {
@@ -76,4 +78,24 @@ public class AirlineCompany {
         return filtered;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("AirlineCompany{");
+        sb.append("planes=").append(planes);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AirlineCompany that = (AirlineCompany) o;
+        return Objects.equals(getPlanes(), that.getPlanes());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPlanes());
+    }
 }
