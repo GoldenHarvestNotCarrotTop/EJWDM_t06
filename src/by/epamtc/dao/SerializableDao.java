@@ -88,7 +88,7 @@ public class SerializableDao<T>  implements Dao<T> {
     }
 
     @Override
-    public void clear() throws IOException, NullDaoException {
+    public void clear() throws IOException {
         saveAll(new ArrayList<T>());
     }
 }

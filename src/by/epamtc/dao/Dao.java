@@ -17,5 +17,5 @@ public interface Dao<T> {
 
     void delete(T t) throws IOException, NullDaoException, DaoException;
 
-    void clear() throws IOException, NullDaoException;
+    void clear() throws IOException;
 }
